@@ -58,17 +58,43 @@ if(isset($_POST['name']))
 		if($num==0)
 		{
 			$qly="INSERT INTO Users (username,passwords,premision) values('".$_POST['name']."','".$_POST['password']."',".$_POST['p'].");";
-			echo $qly;
+			//echo $qly;
 			
 			if($result=$conn->query($qly))
 			{
-				echo 'Done!!';
+				//echo 'Done!!';
+				session_start();
 				
+				 $_SESSION['username']=$_POST['name'];
+			if (isset($_SESSION['username'])){
+					 echo 'good!!'.$_SESSION['username'];
+					 ///header("Location : profile.php");
+					 echo "<script>location.href = 'http://amitnet.info/tomerjobs/profile.php'</script>";
+			}
+				 
 			}
 			else
 				echo 'not work !!';
 			
 		}
+		
+	}
+	
+	if(isset($_POST['firstname1'])){
+		session_start();
+
+		$qly="SELECT userID from Users where username='".$_SESSION['username']."'";
+		$result=$conn->query($qly);
+		$value = mysqli_fetch_object($result);
+		//echo $value->userID;
+		
+		$qly="INSERT INTO DProfile (userid,firstname,lastname,Mobility,skils,experience) VALUES (".$value->userID.",'".$_POST['firstname1']."','".$_POST['lastname1']."','".$_POST['skils1']."','".$_POST['choose1']."','".$_POST['experience1']."');";
+		//echo $qly;
+		if($result=$conn->query($qly))
+		{
+			echo 'its innnnnnn';
+		}
+		//echo 'im hereeeeeeeeeeeeeeee';
 		
 	}
 	  
