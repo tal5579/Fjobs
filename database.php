@@ -6,7 +6,19 @@ $password = "NTig9cjzx";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,"amit91_tomerp");
+if(isset($_GET['to']))
+{
+		$servername = "localhost";
+$username = "amit91_tomerp";
+$password = "NTig9cjzx";
 
+// Create connection
+$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
+
+$qly="INSERT INTO FOLLOWERS (followingid,followerid) values(".$_GET['who'].",".$_GET['to'].")";
+	//echo $_GET['to'];
+	$result = $conn->query($qly);
+}
 		
 // Check connection
 if ($conn->connect_error) {
@@ -144,6 +156,36 @@ $conn = new mysqli($servername, $username, $password,"amit91_tomerp");
 	//return $connecteduser;
 		
 	}
+	
+	function CheckIFfollow($userid1,$userid2){
+		
+			$servername = "localhost";
+			$username = "amit91_tomerp";
+			$password = "NTig9cjzx";
+
+			$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
+		
+			$qly1="SELECT * FROM FOLLOWERS WHERE followingid=".$userid1." AND followerid=".$userid2;
+			//echo $qly1;
+			if ($result1 = $conn->query($qly1)  ) {
+				
+				if($result1->num_rows>0){
+					return true;
+				}
+				else
+					return false;
+				
+ 
+	
+	
+	
+	
+				}
+			//SELECT * FROM FOLLOWERS WHERE followingid=49 AND followerid=52
+			
+			
+	}
+	
 	
 	function Followers($userid){
 				$servername = "localhost";

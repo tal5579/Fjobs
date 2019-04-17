@@ -11,7 +11,11 @@ $countF=Followers($_SESSION['connectedid']);
 // {
 	// echo 'pls use this : ' . $_GET['search'];
 // }
-print_r (Serchres($_GET['search']));
+$theserchres=Serchres($_GET['search']);
+print_r ($theserchres);
+echo count($theserchres);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +61,7 @@ print_r (Serchres($_GET['search']));
 					<nav>
 						<ul>
 							<li>
-								<a href="index.html" title="">
+								<a href="http://amitnet.info/tomerjobs/feed.php" title="">
 									<span><img src="images/icon1.png" alt=""></span>
 									Home
 								</a>
@@ -257,16 +261,51 @@ print_r (Serchres($_GET['search']));
 				<div class="company-title">
 					<h3>Show Search Results for  <?php echo " " . $_GET['search']; ?></h3>
 				</div><!--company-title end-->
-				<div class="companies-list">
-					<div class="row">
+			<?php
+			if(count($theserchres)==0){
+				echo '<h1>There 0 results for the value : '.$_GET['search'].'</h1>'; 
+			}
+			else
+			{
+				///$arryitme=Serchres($_GET['search']);
+				echo '<div class="companies-list">
+					<div class="row">';
+				for($i=0;$i<count($theserchres);$i++)
+				{
+					echo '	
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
 									<img src="http://via.placeholder.com/91x91" alt="">
-									<h3>John Doe</h3>
-									<h4>Graphic Designer</h4>
-									<ul>
-										<li><a href="#" title="" class="follow">Follow</a></li>
+									
+					
+					
+					';
+					
+					echo '<h3>'.$theserchres[$i][1].' '.$theserchres[$i][2].'</h3>';
+					
+					echo '<h4>'.$theserchres[$i][3].'</h4>';
+					echo '		<ul>';
+					
+					if(CheckIFfollow($_SESSION['connectedid'],$theserchres[$i][0]))
+						
+						{
+								echo '<li style="background-color:#A9A9A9;"><a href="#"  title="" class="follow1">Following</a></li>';
+						}
+						else{
+							$str1="searchProfile.php?search=".$_GET['search'];
+							$str=$str1."&who=".$_SESSION['connectedid']."&to=".$theserchres[$i][0];
+							
+							echo '<li><a id="folo" href="'.$str.'" title="" class="follow">Follow</a></li>';
+						}
+							
+									
+										
+										echo'
+										
+										
+										
+										
 										<li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
 										<li><a href="#" title="" class="hire-us">Hire</a></li>
 									</ul>
@@ -285,15 +324,24 @@ print_r (Serchres($_GET['search']));
 						
 					
 					
-					</div>
-				</div><!--companies-list end-->
+				';
+				}
+				echo '</div></div>';
+				
+			}
+			//
+			?>
+			<!--
 				<div class="process-comm">
+				
 					<div class="spinner">
 						<div class="bounce1"></div>
 						<div class="bounce2"></div>
 						<div class="bounce3"></div>
 					</div>
+					
 				</div>
+				-->
 			</div>
 		</section><!--companies-info end-->
 
