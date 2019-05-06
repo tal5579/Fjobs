@@ -6,24 +6,12 @@ $password = "NTig9cjzx";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,"amit91_tomerp");
-if(isset($_GET['to']))
-{
-		$servername = "localhost";
-$username = "amit91_tomerp";
-$password = "NTig9cjzx";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
-
-$qly="INSERT INTO FOLLOWERS (followingid,followerid) values(".$_GET['who'].",".$_GET['to'].")";
-	//echo $_GET['to'];
-	$result = $conn->query($qly);
-}
 		
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
+
 ///echo "Connected successfully";
 
 if(isset($_POST["username"])){
@@ -57,7 +45,7 @@ else
 	
 }
 
-if(isset($_POST['name']))
+if(isset($_POST['name']))//הרשמה//
 	
 	{
 		
@@ -106,7 +94,7 @@ if(isset($_POST['name']))
 		
 	}
 	
-	if(isset($_POST['firstname1'])){
+	if(isset($_POST['firstname1'])){//הוספת פרופיל למשתמש חדש
 		session_start();
 
 		$qly="SELECT userID from Users where username='".$_SESSION['username']."'";
@@ -124,7 +112,7 @@ if(isset($_POST['name']))
 		//echo 'im hereeeeeeeeeeeeeeee';
 		
 	}
-	
+	//מערך חיפוש
 	function arryuser($userid){
 		
 		$servername = "localhost";
@@ -186,14 +174,14 @@ $conn = new mysqli($servername, $username, $password,"amit91_tomerp");
 			
 	}
 	
-	
+	//follow1
 	function Followers($userid){
 				$servername = "localhost";
-$username = "amit91_tomerp";
-$password = "NTig9cjzx";
+				$username = "amit91_tomerp";
+				$password = "NTig9cjzx";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
+	// Create connection
+				$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
 
 
 	$qly1="SELECT *from FOLLOWERS where followerid = ".$userid;
@@ -225,7 +213,24 @@ $conn = new mysqli($servername, $username, $password,"amit91_tomerp");
 		
 	}
 	
-		function Serchres($textoserch){
+	
+//follow2 
+if(isset($_GET['to']))
+{
+		$servername = "localhost";
+		$username = "amit91_tomerp";
+		$password = "NTig9cjzx";
+
+		// Create connection
+$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
+
+$qly="INSERT INTO FOLLOWERS (followingid,followerid) values(".$_GET['who'].",".$_GET['to'].")";
+	//echo $_GET['to'];
+	$result = $conn->query($qly);
+}
+
+	
+		function Serchres($textoserch){//חיפוש משתמש
 		
 		$servername = "localhost";
 $username = "amit91_tomerp";
@@ -270,8 +275,69 @@ $arr = explode(' ',trim($myvalue));
 		
 	}
 	
-	
+function PostsByID($id)
+{
+		$servername = "localhost";
+			$username = "amit91_tomerp";
+			$password = "NTig9cjzx";
 
-	  
+			$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
+		
+		$qly="SELECT * FROM Posts where WriterID=".$id." LIMIT 5";
+		$posts=array();
+		$result = $conn->query($qly);
+		  while ($row = $result->fetch_row()) {
+		$post=array();
+		array_push($post,$row[0]);
+		array_push($post,$row[1]);
+		array_push($post,$row[2]);
+		array_push($post,$row[3]);
+		array_push($post,$row[4]);
+		array_push($post,$row[5]);
+		array_push($post,$row[6]);
+		array_push($post,$row[7]);
+		array_push($post,$row[8]);
+		array_push($post,$row[9]);
+		array_push($posts, $post);
+
+		
+		
+		
+		
+		
+        //printf ("%s (%s)\n", $row[0], $row[1]);
+    }
+	
+	return $posts;
+}	
+
+	  if(isset($_POST['title']))
+	  {
+		  $servername = "localhost";
+			$username = "amit91_tomerp";
+			$password = "NTig9cjzx";
+
+// Create connection
+		$conn = new mysqli($servername, $username, $password,"amit91_tomerp");
+			session_start();
+			$wid=$_SESSION['connectedid'];
+		  $whoname=$_SESSION["Cname"];
+		  $title=$_POST['title'];
+		  $category=$_POST['category'];
+		  $skills=$_POST['skills'];
+		  $price1=$_POST['price1'];
+		  $description=$_POST['description'];
+		  $Fulltime=$_POST['Fulltime'];
+		  $st=(string)date("Y-m-d H:i:s");
+		  $qly="INSERT INTO Posts (WriterName,PostTitel,PostCategory,WriterSkils,JobPrice,JobTime,JobDescription,UploadTime,WriterID) values ('".$whoname."','".$title."','".$category."','".$skills."','".$price1."','".$Fulltime."','". $description."','".$st."',".$wid.");";
+		//  date("Y-m-d H:i:s")
+		  		if($result = $conn->query($qly))
+				{
+					echo '<script>location.href="http://amitnet.info/tomerjobs/feed.php";</script>';
+
+				}
+
+		  
+	  }
 ?>
 
