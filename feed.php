@@ -40,7 +40,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 	<div class="wrapper">
 		
 
-
+	<h1>"Tal disabled"  </h1>
 		<header>
 			<div class="container">
 				<div class="header-data">
@@ -292,7 +292,14 @@ $posts=PostsByID($_SESSION['connectedid']);
 											</li>
 											<li>
 												<a href="#" title="">View Profile</a>
+												
 											</li>
+
+											<li>
+											<a href="http://amitnet.info/tomerjobs/store.php" title="">My Store</a>
+										
+											</li>
+											
 										</ul>
 									</div><!--user-data end-->
 									<div class="suggestions full-width">
@@ -380,7 +387,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 										</div>
 										<div class="post-st">
 											<ul>
-												<li><a class="post_project" href="#" title="">Post a Project</a></li>
+												<li><a class="post_project" href="#" title="">Post new product</a></li>
 												<li><a class="post-jb active" href="#" title="">Post a Job</a></li>
 											</ul>
 										</div><!--post-st end-->
@@ -533,7 +540,10 @@ $posts=PostsByID($_SESSION['connectedid']);
 												echo '	<div class="job-status-bar">
 													<ul class="like-com">
 														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
+															';
+															echo '<a  onclick="func111()"><i class="la la-heart"></i> Like</a>';
+															
+															echo '
 															<img src="images/liked-img.png" alt="">
 															<span>25</span>
 														</li> 
@@ -976,3 +986,9 @@ $posts=PostsByID($_SESSION['connectedid']);
 
 </body>
 </html>
+
+<script>
+	function func111(var num){
+		alert(num);
+	}
+</script>
