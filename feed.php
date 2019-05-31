@@ -1,6 +1,14 @@
 <?php
 require_once('database.php');
 session_start();
+
+// copy!!!
+if(!isset($_SESSION['connectedid'])){
+	echo "<script>location.href = 'http://amitnet.info/tomerjobs'</script>";
+}
+
+
+
 //echo 'THE CONNECTED USERIS : '.$_SESSION['connectedid']." hhh";
 
 //print_r(arryuser($_SESSION['connectedid']));
@@ -11,13 +19,14 @@ $_SESSION["Cname"]=$arryc["firstname"]." ". $arryc["lastname"];
 ///print_r (arryuser($_SESSION['connectedid']));
 //print_r(PostsByID($_SESSION['connectedid']));
 $posts=PostsByID($_SESSION['connectedid']);
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>WorkWise Html Template</title>
+<title>Fjobs</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="" />
 <meta name="keywords" content="" />
@@ -31,6 +40,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 <link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/responsive.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 </head>
 
 
@@ -40,7 +50,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 	<div class="wrapper">
 		
 
-	<h1>"Tal disabled"  </h1>
+	
 		<header>
 			<div class="container">
 				<div class="header-data">
@@ -56,143 +66,26 @@ $posts=PostsByID($_SESSION['connectedid']);
 					<nav>
 						<ul>
 							<li>
-								<a href="index.html" title="">
+								<a href="http://amitnet.info/tomerjobs/feed.php" title="">
 									<span><img src="images/icon1.png" alt=""></span>
 									Home
 								</a>
 							</li>
+							
 							<li>
-								<a href="companies.html" title="">
-									<span><img src="images/icon2.png" alt=""></span>
-									Companies
-								</a>
-								<ul>
-									<li><a href="companies.html" title="">Companies</a></li>
-									<li><a href="company-profile.html" title="">Company Profile</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="projects.html" title="">
-									<span><img src="images/icon3.png" alt=""></span>
-									Projects
-								</a>
-							</li>
-							<li>
-								<a href="profiles.html" title="">
-									<span><img src="images/icon4.png" alt=""></span>
-									Profiles
-								</a>
-								<ul>
-									<li><a href="user-profile.html" title="">User Profile</a></li>
-									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="jobs.html" title="">
-									<span><img src="images/icon5.png" alt=""></span>
-									Jobs
-								</a>
-							</li>
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img src="images/icon6.png" alt=""></span>
-									Messages
-								</a>
-								<div class="notification-box msg">
-									<div class="nt-title">
-										<h4>Setting</h4>
-										<a href="#" title="">Clear all</a>
-									</div>
-									<div class="nott-list">
-										<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img1.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a> </h3>
-							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img3.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="view-all-nots">
-						  					<a href="messages.html" title="">View All Messsages</a>
-						  				</div>
-									</div><!--nott-list end-->
-								</div><!--notification-box end-->
-							</li>
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img src="images/icon7.png" alt=""></span>
-									Notification
-								</a>
-								<div class="notification-box">
-									<div class="nt-title">
-										<h4>Setting</h4>
-										<a href="#" title="">Clear all</a>
-									</div>
-									<div class="nott-list">
-										<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img1.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img3.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="view-all-nots">
-						  					<a href="#" title="">View All Notification</a>
-						  				</div>
-									</div><!--nott-list end-->
-								</div><!--notification-box end-->
-							</li>
+											<?php
+											echo '<a href="http://amitnet.info/tomerjobs/store.php?storeid='.$_SESSION['connectedid'].'"><span><img src="images/icon2.png" alt=""></span>
+											My Store</a>'; 
+
+											?>
+										
+											</li>
+
+
+							
+						
+							
+							
 						</ul>
 					</nav><!--nav end-->
 					<div class="menu-btn">
@@ -242,7 +135,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
-							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
+							<h3 class="tc"><a href="?logout=yes" title="">Logout</a></h3>
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
@@ -260,7 +153,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 										<div class="user-profile">
 											<div class="username-dt">
 												<div class="usr-pic">
-													<img src="http://via.placeholder.com/100x100" alt="">
+													<img src="http://www.iconninja.com/files/333/226/426/profile-builder-professional-construction-manager-account-worker-icon.png" alt="">
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">
@@ -295,10 +188,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 												
 											</li>
 
-											<li>
-											<a href="http://amitnet.info/tomerjobs/store.php" title="">My Store</a>
 										
-											</li>
 											
 										</ul>
 									</div><!--user-data end-->
@@ -383,7 +273,7 @@ $posts=PostsByID($_SESSION['connectedid']);
 								<div class="main-ws-sec">
 									<div class="post-topbar">
 										<div class="user-picy">
-											<img src="http://via.placeholder.com/100x100" alt="">
+											<img src="http://www.iconninja.com/files/333/226/426/profile-builder-professional-construction-manager-account-worker-icon.png" alt="">
 										</div>
 										<div class="post-st">
 											<ul>
@@ -541,7 +431,9 @@ $posts=PostsByID($_SESSION['connectedid']);
 													<ul class="like-com">
 														<li>
 															';
-															echo '<a  onclick="func111()"><i class="la la-heart"></i> Like</a>';
+															echo '<a id="likePost" name="'.$i;
+															echo '"';
+															echo ' name2="'.$posts[$i][1].'"'.' name3="'.$posts[$i][0].'"'.'><i class="la la-heart"></i> Like</a>';
 															
 															echo '
 															<img src="images/liked-img.png" alt="">
@@ -823,155 +715,6 @@ $posts=PostsByID($_SESSION['connectedid']);
 		</div><!--post-project-popup end-->
 
 
-
-		<div class="chatbox-list">
-			<div class="chatbox">
-				<div class="chat-mg">
-					<a href="#" title=""><img src="http://via.placeholder.com/70x70" alt=""></a>
-					<span>2</span>
-				</div>
-				<div class="conversation-box">
-					<div class="con-title mg-3">
-						<div class="chat-user-info">
-							<img src="http://via.placeholder.com/34x33" alt="">
-							<h3>John Doe <span class="status-info"></span></h3>
-						</div>
-						<div class="st-icons">
-							<a href="#" title=""><i class="la la-cog"></i></a>
-							<a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
-							<a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
-						</div>
-					</div>
-					<div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
-						<div class="chat-msg">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-							<span>Sat, Aug 23, 1:10 PM</span>
-						</div>
-						<div class="date-nd">
-							<span>Sunday, August 24</span>
-						</div>
-						<div class="chat-msg st2">
-							<p>Cras ultricies ligula.</p>
-							<span>5 minutes ago</span>
-						</div>
-						<div class="chat-msg">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-							<span>Sat, Aug 23, 1:10 PM</span>
-						</div>
-					</div><!--chat-list end-->
-					<div class="typing-msg">
-						<form>
-							<textarea placeholder="Type a message here"></textarea>
-							<button type="submit"><i class="fa fa-send"></i></button>
-						</form>
-						<ul class="ft-options">
-							<li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
-							<li><a href="#" title=""><i class="la la-camera"></i></a></li>
-							<li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
-						</ul>
-					</div><!--typing-msg end-->
-				</div><!--chat-history end-->
-			</div>
-			<div class="chatbox">
-				<div class="chat-mg">
-					<a href="#" title=""><img src="http://via.placeholder.com/70x70" alt=""></a>
-				</div>
-				<div class="conversation-box">
-					<div class="con-title mg-3">
-						<div class="chat-user-info">
-							<img src="http://via.placeholder.com/34x33" alt="">
-							<h3>John Doe <span class="status-info"></span></h3>
-						</div>
-						<div class="st-icons">
-							<a href="#" title=""><i class="la la-cog"></i></a>
-							<a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
-							<a href="#" title="" class="close-chat"><i class="la la-close"></i></a>
-						</div>
-					</div>
-					<div class="chat-hist mCustomScrollbar" data-mcs-theme="dark">
-						<div class="chat-msg">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-							<span>Sat, Aug 23, 1:10 PM</span>
-						</div>
-						<div class="date-nd">
-							<span>Sunday, August 24</span>
-						</div>
-						<div class="chat-msg st2">
-							<p>Cras ultricies ligula.</p>
-							<span>5 minutes ago</span>
-						</div>
-						<div class="chat-msg">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-							<span>Sat, Aug 23, 1:10 PM</span>
-						</div>
-					</div><!--chat-list end-->
-					<div class="typing-msg">
-						<form>
-							<textarea placeholder="Type a message here"></textarea>
-							<button type="submit"><i class="fa fa-send"></i></button>
-						</form>
-						<ul class="ft-options">
-							<li><a href="#" title=""><i class="la la-smile-o"></i></a></li>
-							<li><a href="#" title=""><i class="la la-camera"></i></a></li>
-							<li><a href="#" title=""><i class="fa fa-paperclip"></i></a></li>
-						</ul>
-					</div><!--typing-msg end-->
-				</div><!--chat-history end-->
-			</div>
-			<div class="chatbox">
-				<div class="chat-mg bx">
-					<a href="#" title=""><img src="images/chat.png" alt=""></a>
-					<span>2</span>
-				</div>
-				<div class="conversation-box">
-					<div class="con-title">
-						<h3>Messages</h3>
-						<a href="#" title="" class="close-chat"><i class="la la-minus-square"></i></a>
-					</div>
-					<div class="chat-list">
-						<div class="conv-list active">
-							<div class="usrr-pic">
-								<img src="http://via.placeholder.com/50x50" alt="">
-								<span class="active-status activee"></span>
-							</div>
-							<div class="usy-info">
-								<h3>John Doe</h3>
-								<span>Lorem ipsum dolor <img src="images/smley.png" alt=""></span>
-							</div>
-							<div class="ct-time">
-								<span>1:55 PM</span>
-							</div>
-							<span class="msg-numbers">2</span>
-						</div>
-						<div class="conv-list">
-							<div class="usrr-pic">
-								<img src="http://via.placeholder.com/50x50" alt="">
-							</div>
-							<div class="usy-info">
-								<h3>John Doe</h3>
-								<span>Lorem ipsum dolor <img src="images/smley.png" alt=""></span>
-							</div>
-							<div class="ct-time">
-								<span>11:39 PM</span>
-							</div>
-						</div>
-						<div class="conv-list">
-							<div class="usrr-pic">
-								<img src="http://via.placeholder.com/50x50" alt="">
-							</div>
-							<div class="usy-info">
-								<h3>John Doe</h3>
-								<span>Lorem ipsum dolor <img src="images/smley.png" alt=""></span>
-							</div>
-							<div class="ct-time">
-								<span>0.28 AM</span>
-							</div>
-						</div>
-					</div><!--chat-list end-->
-				</div><!--conversation-box end-->
-			</div>
-		</div><!--chatbox-list end-->
-
 	</div><!--theme-layout end-->
 
 
@@ -988,7 +731,67 @@ $posts=PostsByID($_SESSION['connectedid']);
 </html>
 
 <script>
-	function func111(var num){
-		alert(num);
+$(document).ready(function(){
+	//alert("dsfsdf");
+	for(var i=0;i<document.getElementsByClassName("like-com").length;i++)
+	{
+		
+		// var dom = document.getElementsByClassName("like-com")[i].getElementsByTagName("a")[0];
+		// var postid=dom.getAttribute("name2");
+		// alert(postid);
+		//  var dataString = 'checkiflike='+postid;
+        // //     //alert("asd");
+        //      $.ajax({
+        //        type: 'POST',
+        //         data: dataString,
+        //       url: 'database.php',
+        //     success: function (data) {
+		// 		if(data==1)
+	 	// 		{
+		//  				dom.style.color="#e44d3a";
+		//  			}
+		// 			else
+		//  				echo data;
+					
+		// 		///alert(data);
+
+        //      }
+        //   });
+			
+
+
+
 	}
+	
+
+
+});
+
+$(document).ready(function(){
+$(document).on("click","#likePost", function () {
+   var likeid = $(this).attr('name'); // or var clickedBtnID = this.id
+   var postid = $(this).attr('name2');
+   var whowirte = $(this).attr('name3');
+   var dataString = 'LikeId='+likeid + '&postid='+postid + '&whowirte='+whowirte;
+            //alert("asd");
+            $.ajax({
+                type: 'POST',
+                data: dataString,
+                url: 'database.php',
+                success: function (data) {
+					document.getElementsByClassName("like-com")[likeid].getElementsByTagName("a")[0].style.color="#e44d3a";
+					///alert(data);
+
+                }
+            });
+			
+			//alert(likeid);
+
+  /// alert("i click on " + clickedBtnID);
+       
+			
+
+});
+});
+
 </script>
