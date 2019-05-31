@@ -1,4 +1,17 @@
+<?php
+require_once('database.php');
+session_start();
+//echo 'THE CONNECTED USERIS : '.$_SESSION['connectedid']." hhh";
 
+//print_r(arryuser($_SESSION['connectedid']));
+if(isset($_GET['storeid'])){
+	$thearray=products($_GET['storeid']);
+
+}
+
+//print_r(products());
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -246,27 +259,71 @@
 						<div class="row">
 							<div class="col-lg-3">
 							</div>
-							<div class="col-lg-6">
-								<div class="main-ws-sec">
-								<div class="widget widget-portfolio">
-										<div class="wd-heady">
-											<h3>My Store</h3>
-									
-											<img src="images/photo-icon.png" alt="">
+
+
+
+
+
+
+							<?php 
+								
+								for($num=0;$num<count($thearray);$num++)
+								{
+										echo '	<div class="col-lg-6">
+										<div class="main-ws-sec">
+										<div class="widget widget-portfolio">
+												<div class="wd-heady">';
+												echo '<h3>'.$thearray[$num][3].'</h3>';
+												echo '<img src="images/photo-icon.png" alt=""></div>';
+												echo '<div class="pf-gallery">
+												<ul>
+													<li><a href="#" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
+													
+												
+												</ul>';
+												echo '<p>'.$thearray[$num][4].'</p>';
+												echo '<p> Price : '.$thearray[$num][5].'</p>';
+												echo '			<div class="message-btn">
+												<a href="#" title=""><i ></i> buy now</a>
+											</div>
+												</div>
+											</div>
 										</div>
-										<div class="pf-gallery">
-											<ul>
-												<li><a href="#" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
-												<li><a href="#" title=""><img src="http://via.placeholder.com/70x70" alt=""></a></li>
+									</div>';
+
+
+
+
+
+								}
+
+
+
+
+							?>
+
+						
+												<div class="message-btn">
+												<a href="http://amitnet.info/tomerjobs/addproduct.php" title=""><i ></i>Add product</a>
+											</div>		
+									
 											
-											</ul>
-											<div class="message-btn">
-										<a href="#" title=""><i ></i> Add Product</a>
-									</div>
-										</div><!--pf-gallery end-->
-									</div><!--widget-portfolio end-->
-								</div><!--main-ws-sec end-->
-							</div>
+										
+									
+										
+										
+								
+
+
+
+
+
+
+
+
+
+
+
 							<div class="col-lg-3">
 								<div class="right-sidebar">
 									
